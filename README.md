@@ -34,6 +34,27 @@ Untuk kemudahan pengujian langsung di peramban lokal, sistem telah menyediakan a
 
 ---
 
+## ❓ Mengapa Profil Kembali Default Setelah Dipublish ke Vercel?
+
+**Penyebabnya:**
+Ketika Anda mengedit profil atau foto melalui tombol di browser, data tersebut disimpan di **LocalStorage peramban lokal laptop Anda**. 
+Ketika Anda mengunggah (*publish*) proyek ke GitHub & Vercel, Vercel hanya membaca isi berkas fisik kode yang ada di folder proyek Anda. Saat website dibuka lewat tautan Vercel (atau dibuka oleh orang lain/perangkat lain), LocalStorage-nya masih kosong sehingga website kembali menampilkan data bawaan (*default*).
+
+**Cara Agar Perubahan Profil Permanen di Vercel:**
+Ada 2 cara yang sangat mudah:
+1. **Cara 1 (Otomatis lewat Website):**
+   - Masuk ke **Dashboard Admin** di website.
+   - Edit profil, nama, atau kontak Anda.
+   - Klik tombol **"📥 Unduh profile-data.js"**.
+   - Pindahkan/timpa file `profile-data.js` yang baru diunduh ke folder `web-portfolio/js/` di komputer Anda.
+   - Push kembali ke GitHub/Vercel (`git add .`, `git commit -m "Update profile"`, `git push`).
+2. **Cara 2 (Edit Langsung File js/profile-data.js):**
+   - Buka file `js/profile-data.js` menggunakan Notepad / text editor.
+   - Ubah `fullName`, `roleTitle`, `aboutBio1`, `skills`, atau tautan kontak sesuai keinginan Anda.
+   - Simpan dan push ke Vercel!
+
+---
+
 ## 📁 Struktur Direktori
 
 ```text
@@ -46,6 +67,7 @@ web-portfolio/
 ├── css/
 │   └── style.css                # Desain visual lengkap bertema Light Theme
 ├── js/
+│   ├── profile-data.js          # Konfigurasi data profil & kontak utama (untuk Vercel)
 │   └── app.js                   # Logika navigasi halaman, filter, form, & modal
 └── assets/
     └── images/

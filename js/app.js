@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 0. Profile & Contact CMS Data Management ---
   const PROFILE_STORAGE_KEY = 'karya_custom_profile_data_v2';
 
-  const DEFAULT_PROFILE_DATA = {
+  const BASE_FALLBACK_DATA = {
     fullName: "Abby Pratama",
     roleTitle: "Lead Web Architect & Developer",
     brandName: "PORTFOLIOSAYA",
@@ -27,8 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
     socialGithub: "@abby-pratama",
     socialLinkedin: "/in/abby-pratama",
     socialDribbble: "@abby-design",
-    socialNetwork: "@abby_instagram"
+    socialNetwork: "@abby_instagram",
+    avatarUrl: "assets/images/team-1.svg"
   };
+
+  const DEFAULT_PROFILE_DATA = (typeof window.PROFILE_CONFIG !== 'undefined' && window.PROFILE_CONFIG)
+    ? { ...BASE_FALLBACK_DATA, ...window.PROFILE_CONFIG }
+    : BASE_FALLBACK_DATA;
 
   function getProfileData() {
     try {
@@ -44,6 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function saveProfileData(newData) {
     localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(newData));
+    if (typeof window.PROFILE_CONFIG !== 'undefined') {
+      window.PROFILE_CONFIG = { ...window.PROFILE_CONFIG, ...newData };
+    }
     applyProfileDataToDOM(newData);
   }
 
@@ -603,6 +611,79 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Generate downloadable profile-data.js content for Vercel deployment
+  function generateProfileConfigCode(data, avatarUrl) {
+    const configObj = {
+      fullName: data.fullName,
+      roleTitle: data.roleTitle,
+      brandName: data.brandName,
+      heroBadge: data.heroBadge,
+      heroHeadline: data.heroHeadline,
+      heroDesc: data.heroDesc,
+      aboutTitle: data.aboutTitle,
+      aboutBio1: data.aboutBio1,
+      aboutBio2: data.aboutBio2,
+      skills: data.skills,
+      contactIntro: data.contactIntro,
+      socialGithub: data.socialGithub,
+      socialLinkedin: data.socialLinkedin,
+      socialDribbble: data.socialDribbble,
+      socialInstagram: data.socialNetwork,
+      avatarUrl: avatarUrl || data.avatarUrl || "assets/images/team-1.svg"
+    };
+
+    return `/**
+ * ===================================================================
+ * KONFIGURASI DATA PROFIL & KONTAK SAYA (UNTUK PUBLISH VERCEL)
+ * ===================================================================
+ * File ini dibaca otomatis oleh website saat dibuka secara lokal
+ * maupun setelah dipublish ke Vercel.
+ */
+
+window.PROFILE_CONFIG = ${JSON.stringify(configObj, null, 2)};
+`;
+  }
+
+  const btnDownloadProfileConfig = document.getElementById('btnDownloadProfileConfig');
+  if (btnDownloadProfileConfig) {
+    btnDownloadProfileConfig.addEventListener('click', () => {
+      const data = getProfileData();
+      const avatar = getSavedAvatar();
+      const code = generateProfileConfigCode(data, avatar);
+
+      const blob = new Blob([code], { type: 'application/javascript;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'profile-data.js';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      showToast('File Berhasil Diunduh', 'Timpa file profile-data.js ini ke dalam folder js/ sebelum di-upload ke Vercel!', 'success');
+    });
+  }
+
+  const btnCopyProfileConfig = document.getElementById('btnCopyProfileConfig');
+  if (btnCopyProfileConfig) {
+    btnCopyProfileConfig.addEventListener('click', () => {
+      const data = getProfileData();
+      const avatar = getSavedAvatar();
+      const code = generateProfileConfigCode(data, avatar);
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(() => {
+          showToast('Kode Disalin', 'Kode konfigurasi berhasil disalin ke clipboard!', 'success');
+        }).catch(() => {
+          showToast('Info', 'Silakan unduh file secara langsung menggunakan tombol unduh.', 'info');
+        });
+      } else {
+        showToast('Info', 'Silakan unduh file secara langsung menggunakan tombol unduh.', 'info');
+      }
+    });
+  }
+
   // --- 5. Admin & User Dashboards Logic ---
   const adminTotalMessages = document.getElementById('adminTotalMessages');
   const adminMessagesTbody = document.getElementById('adminMessagesTbody');
@@ -970,10 +1051,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalPhotoPreview = document.getElementById('modalPhotoPreview');
 
   const AVATAR_KEY = 'karya_custom_user_avatar_v2';
-  const DEFAULT_AVATAR = 'assets/images/team-1.svg';
+  const DEFAULT_AVATAR = (typeof window.PROFILE_CONFIG !== 'undefined' && window.PROFILE_CONFIG && window.PROFILE_CONFIG.avatarUrl) 
+    ? window.PROFILE_CONFIG.avatarUrl 
+    : 'assets/images/team-1.svg';
 
   function getSavedAvatar() {
-    return localStorage.getItem(AVATAR_KEY) || localStorage.getItem('karya_custom_avatar_team-1') || DEFAULT_AVATAR;
+    return localStorage.getItem(AVATAR_KEY) || 
+           localStorage.getItem('karya_custom_avatar_team-1') || 
+           ((typeof window.PROFILE_CONFIG !== 'undefined' && window.PROFILE_CONFIG && window.PROFILE_CONFIG.avatarUrl) ? window.PROFILE_CONFIG.avatarUrl : DEFAULT_AVATAR);
   }
 
   function applyAvatarToAllElements(avatarUrl) {
