@@ -155,8 +155,36 @@
           </div>
 
           <div class="hero-visual">
-            <div class="illustration-wrap">
-              <img src="assets/images/hero-illustration.svg" alt="Ilustrasi Pengembangan Aplikasi Web Modern" width="520" height="390">
+            <div class="hero-presentation">
+              <!-- Kartu Foto Profil Saya di Halaman Utama -->
+              <div class="hero-photo-card">
+                <div class="hero-photo-avatar-wrap">
+                  <img id="avatar-img-hero" class="hero-photo-avatar-img user-avatar-sync" src="assets/images/team-1.svg" alt="Foto Profil Saya">
+                  <button class="avatar-badge-btn change-photo-btn" data-member-id="team-1" title="Ubah Foto Saya Sekarang">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                      <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                  </button>
+                </div>
+                <div class="hero-photo-info">
+                  <div class="hero-photo-status">
+                    <span class="status-dot"></span>
+                    <span>Tersedia untuk Proyek</span>
+                  </div>
+                  <strong class="hero-photo-name" id="heroPhotoName">Abby Pratama</strong>
+                  <span class="hero-photo-role" id="heroPhotoRole">Web Developer &amp; UI/UX</span>
+                  <button type="button" class="btn btn-secondary btn-sm change-photo-btn" data-member-id="team-1" style="margin-top: 0.5rem; font-size: 0.78rem; padding: 0.35rem 0.65rem;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                    <span>Ubah Foto Saya</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Gambar Ilustrasi Modern -->
+              <div class="illustration-wrap">
+                <img src="assets/images/hero-illustration.svg" alt="Ilustrasi Pengembangan Aplikasi Web Modern" width="520" height="390">
+              </div>
             </div>
           </div>
         </div>
@@ -389,13 +417,19 @@
 
           <!-- Featured Profile Card -->
           <div class="profile-card-featured">
-            <div class="profile-featured-avatar-wrap">
-              <img id="avatar-img-team-1" class="profile-featured-avatar-img" src="assets/images/team-1.svg" alt="Foto Profil Saya">
-              <button class="avatar-badge-btn change-photo-btn" data-member-id="team-1" title="Ganti foto profil Anda">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                  <circle cx="12" cy="13" r="4"></circle>
-                </svg>
+            <div style="text-align: center;">
+              <div class="profile-featured-avatar-wrap">
+                <img id="avatar-img-team-1" class="profile-featured-avatar-img user-avatar-sync" src="assets/images/team-1.svg" alt="Foto Profil Saya">
+                <button class="avatar-badge-btn change-photo-btn" data-member-id="team-1" title="Ganti foto profil Anda">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="13" r="4"></circle>
+                  </svg>
+                </button>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm change-photo-btn" data-member-id="team-1" style="margin-top: 0.9rem; font-size: 0.85rem; padding: 0.45rem 1rem;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                <span>Ubah Foto Profil</span>
               </button>
             </div>
             <div>
@@ -1077,24 +1111,85 @@
        MODAL: GANTI FOTO ANDA SENDIRI (INTERACTIVE CLIENT-SIDE PREVIEW)
        =================================================================== -->
   <div class="modal-backdrop" id="photoModal">
-    <div class="modal-box">
+    <div class="modal-box" style="max-width: 540px;">
       <div class="modal-header">
-        <h3 class="modal-title">Ganti Foto Profil Anda</h3>
+        <div>
+          <h3 class="modal-title">Ubah Foto Saya</h3>
+          <span style="font-size: 0.8rem; color: var(--text-soft);">Tersimpan otomatis di peramban lokal browser Anda</span>
+        </div>
         <button class="modal-close-btn modal-close-trigger">&times;</button>
       </div>
       <div class="modal-body">
-        <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.5;">
-          Anda dapat memilih file foto Anda dari komputer untuk langsung ditampilkan pada kartu profil di peramban ini. File akan disimpan secara lokal di browser Anda.
-        </p>
+        <!-- Preview Box -->
+        <div class="photo-preview-box">
+          <img id="modalPhotoPreview" class="photo-preview-img user-avatar-sync" src="assets/images/team-1.svg" alt="Pratinjau Foto">
+          <div>
+            <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-main); margin-bottom: 0.2rem;">Foto Profil Aktif</div>
+            <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.4;">Foto ini otomatis tampil di Halaman Utama, Halaman Profil, dan Navigasi.</p>
+          </div>
+        </div>
+
         <input type="hidden" id="targetMember" value="team-1">
-        
-        <div class="form-group">
-          <label class="form-label" for="photoUploadInput">Pilih Berkas Foto (JPG, PNG, atau WebP):</label>
-          <input type="file" id="photoUploadInput" class="form-control" accept="image/*">
+
+        <!-- Photo Selector Tabs -->
+        <div class="photo-tabs">
+          <button type="button" class="photo-tab-btn active" data-photo-tab="upload">
+            📁 Unggah File Foto
+          </button>
+          <button type="button" class="photo-tab-btn" data-photo-tab="url">
+            🔗 Link URL Foto
+          </button>
+          <button type="button" class="photo-tab-btn" data-photo-tab="preset">
+            🎨 Avatar Pilihan
+          </button>
+        </div>
+
+        <!-- Pane 1: File Upload -->
+        <div class="photo-pane active" id="pane-photo-upload">
+          <div class="form-group">
+            <label class="form-label" for="photoUploadInput">Pilih Berkas Foto Anda (JPG, PNG, atau WebP):</label>
+            <input type="file" id="photoUploadInput" class="form-control" accept="image/*">
+            <span style="font-size: 0.78rem; color: var(--text-soft); margin-top: 0.35rem; display: block;">File akan diproses secara lokal di browser tanpa dikirim ke server luar (Aman &amp; Privasi Terjaga).</span>
+          </div>
+        </div>
+
+        <!-- Pane 2: Image URL -->
+        <div class="photo-pane" id="pane-photo-url">
+          <div class="form-group">
+            <label class="form-label" for="photoUrlInput">Tautan / Link Gambar Online:</label>
+            <div style="display: flex; gap: 0.5rem;">
+              <input type="url" id="photoUrlInput" class="form-control" placeholder="https://example.com/foto-anda.jpg">
+              <button type="button" class="btn btn-primary btn-sm" id="btnApplyPhotoUrl">Terapkan</button>
+            </div>
+            <span style="font-size: 0.78rem; color: var(--text-soft); margin-top: 0.35rem; display: block;">Masukkan tautan gambar langsung (misal avatar GitHub atau link foto publik lainnya).</span>
+          </div>
+        </div>
+
+        <!-- Pane 3: Preset Avatars -->
+        <div class="photo-pane" id="pane-photo-preset">
+          <label class="form-label">Pilih Karakter Ilustrasi Favorit:</label>
+          <div class="preset-avatars-grid">
+            <div class="preset-avatar-item" data-preset-src="assets/images/team-1.svg">
+              <img src="assets/images/team-1.svg" alt="Avatar 1">
+              <span>Modern 1</span>
+            </div>
+            <div class="preset-avatar-item" data-preset-src="assets/images/team-2.svg">
+              <img src="assets/images/team-2.svg" alt="Avatar 2">
+              <span>Modern 2</span>
+            </div>
+            <div class="preset-avatar-item" data-preset-src="assets/images/team-3.svg">
+              <img src="assets/images/team-3.svg" alt="Avatar 3">
+              <span>Modern 3</span>
+            </div>
+            <div class="preset-avatar-item" data-preset-src="assets/images/team-4.svg">
+              <img src="assets/images/team-4.svg" alt="Avatar 4">
+              <span>Modern 4</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary btn-sm" id="resetPhotoBtn">Reset ke Standar</button>
+        <button class="btn btn-secondary btn-sm" id="resetPhotoBtn">Reset ke Foto Bawaan</button>
         <button class="btn btn-primary btn-sm modal-close-trigger">Selesai</button>
       </div>
     </div>

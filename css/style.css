@@ -1710,6 +1710,196 @@ textarea.form-control {
   flex-wrap: wrap;
 }
 
+/* ===================================================================
+   HERO PHOTO SHOWCASE & PHOTO MODAL TABS
+   =================================================================== */
+
+.hero-presentation {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+}
+
+.hero-photo-card {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.4rem;
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  z-index: 10;
+  max-width: 340px;
+  animation: floatSubtle 5s ease-in-out infinite;
+}
+
+.hero-photo-avatar-wrap {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+}
+
+.hero-photo-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary);
+  background: var(--bg-accent-light);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+.hero-photo-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-photo-status {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--accent-emerald);
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-emerald);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+.hero-photo-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.hero-photo-role {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* Photo Modal Tabs & Presets */
+.photo-tabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1.25rem;
+  overflow-x: auto;
+}
+
+.photo-tab-btn {
+  padding: 0.6rem 0.9rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.photo-tab-btn:hover {
+  color: var(--primary);
+}
+
+.photo-tab-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.photo-pane {
+  display: none;
+  animation: fadeIn 0.25s ease;
+}
+
+.photo-pane.active {
+  display: block;
+}
+
+.photo-preview-box {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: var(--bg-subtle);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.photo-preview-img {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary);
+  background: white;
+}
+
+.preset-avatars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.preset-avatar-item {
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.3rem;
+  background: #FFFFFF;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.preset-avatar-item:hover, .preset-avatar-item.selected {
+  border-color: var(--primary);
+  background: var(--bg-accent-light);
+  transform: translateY(-2px);
+}
+
+.preset-avatar-item img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin: 0 auto 0.25rem;
+}
+
+.preset-avatar-item span {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .hero-photo-card {
+    position: static;
+    margin-top: 1.5rem;
+    max-width: 100%;
+    animation: none;
+  }
+}
+
 @media (max-width: 900px) {
   .profile-card-featured {
     grid-template-columns: 1fr;

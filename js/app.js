@@ -66,6 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroDescText = document.getElementById('heroDescText');
     if (heroDescText) heroDescText.textContent = data.heroDesc;
 
+    const heroPhotoName = document.getElementById('heroPhotoName');
+    if (heroPhotoName) heroPhotoName.textContent = data.fullName;
+
+    const heroPhotoRole = document.getElementById('heroPhotoRole');
+    if (heroPhotoRole) heroPhotoRole.textContent = data.roleTitle;
+
     // 3. Halaman Profil
     const aboutTitleText = document.getElementById('aboutTitleText');
     if (aboutTitleText) aboutTitleText.textContent = data.aboutTitle;
@@ -170,7 +176,18 @@ document.addEventListener('DOMContentLoaded', () => {
         : (user.name || user.username);
 
       if (navUserName) navUserName.textContent = displayName;
-      if (navUserInitial) navUserInitial.textContent = displayName.charAt(0).toUpperCase();
+      const savedAv = getSavedAvatar();
+      if (navUserInitial) {
+        if (savedAv && savedAv !== DEFAULT_AVATAR) {
+          navUserInitial.innerHTML = `<img src="${savedAv}" alt="Avatar" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
+          navUserInitial.style.padding = '0';
+          navUserInitial.style.overflow = 'hidden';
+        } else {
+          navUserInitial.textContent = displayName.charAt(0).toUpperCase();
+          navUserInitial.style.padding = '';
+          navUserInitial.style.overflow = '';
+        }
+      }
 
       if (user.role === 'admin') {
         if (navUserRole) {
@@ -944,32 +961,90 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 8. Profile Photo Customizer Modal ---
+  // --- 8. Profile Photo Management (Upload, URL, & Presets) ---
   const photoModal = document.getElementById('photoModal');
   const photoUploadInput = document.getElementById('photoUploadInput');
-  const targetMemberInput = document.getElementById('targetMember');
+  const photoUrlInput = document.getElementById('photoUrlInput');
+  const btnApplyPhotoUrl = document.getElementById('btnApplyPhotoUrl');
   const resetPhotoBtn = document.getElementById('resetPhotoBtn');
+  const modalPhotoPreview = document.getElementById('modalPhotoPreview');
 
-  const AVATAR_KEY_PREFIX = 'karya_custom_avatar_';
-  function applySavedAvatars() {
-    ['team-1'].forEach(id => {
-      const savedUrl = localStorage.getItem(AVATAR_KEY_PREFIX + id);
-      if (savedUrl) {
-        const img = document.getElementById(`avatar-img-${id}`);
-        if (img) img.src = savedUrl;
-      }
-    });
+  const AVATAR_KEY = 'karya_custom_user_avatar_v2';
+  const DEFAULT_AVATAR = 'assets/images/team-1.svg';
+
+  function getSavedAvatar() {
+    return localStorage.getItem(AVATAR_KEY) || localStorage.getItem('karya_custom_avatar_team-1') || DEFAULT_AVATAR;
   }
-  applySavedAvatars();
 
+  function applyAvatarToAllElements(avatarUrl) {
+    const url = avatarUrl || getSavedAvatar();
+    
+    // Update all synchronized avatar image elements
+    document.querySelectorAll('.user-avatar-sync').forEach(img => {
+      img.src = url;
+    });
+
+    const heroImg = document.getElementById('avatar-img-hero');
+    if (heroImg) heroImg.src = url;
+
+    const profileImg = document.getElementById('avatar-img-team-1');
+    if (profileImg) profileImg.src = url;
+
+    if (modalPhotoPreview) modalPhotoPreview.src = url;
+
+    const navInitial = document.getElementById('navUserInitial');
+    if (navInitial) {
+      if (url && url !== DEFAULT_AVATAR) {
+        navInitial.innerHTML = `<img src="${url}" alt="Avatar" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
+        navInitial.style.padding = '0';
+        navInitial.style.overflow = 'hidden';
+      } else {
+        const user = getAuthUser();
+        const currentProfile = getProfileData();
+        const displayName = user ? (user.role === 'admin' ? currentProfile.fullName : user.name || user.username) : 'A';
+        navInitial.textContent = (displayName || 'A').charAt(0).toUpperCase();
+        navInitial.style.padding = '';
+        navInitial.style.overflow = '';
+      }
+    }
+  }
+
+  function setSavedAvatar(avatarUrl) {
+    localStorage.setItem(AVATAR_KEY, avatarUrl);
+    localStorage.setItem('karya_custom_avatar_team-1', avatarUrl);
+    applyAvatarToAllElements(avatarUrl);
+  }
+
+  // Initial load of avatar
+  applyAvatarToAllElements();
+
+  // Open photo modal listeners
   document.querySelectorAll('.change-photo-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const memberId = btn.getAttribute('data-member-id');
-      if (targetMemberInput) targetMemberInput.value = memberId;
+      if (modalPhotoPreview) {
+        modalPhotoPreview.src = getSavedAvatar();
+      }
       openModal(photoModal);
     });
   });
 
+  // Photo modal tab switching
+  const photoTabs = document.querySelectorAll('.photo-tab-btn');
+  const photoPanes = document.querySelectorAll('.photo-pane');
+
+  photoTabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      photoTabs.forEach(b => b.classList.remove('active'));
+      photoPanes.forEach(p => p.classList.remove('active'));
+
+      btn.classList.add('active');
+      const tabKey = btn.getAttribute('data-photo-tab');
+      const targetPane = document.getElementById(`pane-photo-${tabKey}`);
+      if (targetPane) targetPane.classList.add('active');
+    });
+  });
+
+  // 1. Upload from local file (Laptop / PC / HP)
   if (photoUploadInput) {
     photoUploadInput.addEventListener('change', (e) => {
       const file = e.target.files[0];
@@ -980,32 +1055,67 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      if (file.size > 8 * 1024 * 1024) {
+        showToast('Ukuran Terlalu Besar', 'Maksimal ukuran foto adalah 8MB.', 'info');
+        return;
+      }
+
       const reader = new FileReader();
       reader.onload = (event) => {
         const dataUrl = event.target.result;
-        const memberId = targetMemberInput.value;
-        const imgEl = document.getElementById(`avatar-img-${memberId}`);
-        if (imgEl) {
-          imgEl.src = dataUrl;
-          localStorage.setItem(AVATAR_KEY_PREFIX + memberId, dataUrl);
-          showToast('Foto Diperbarui', 'Foto profil Anda berhasil diperbarui dan disimpan di peramban.', 'success');
-          closeModal(photoModal);
-        }
+        setSavedAvatar(dataUrl);
+        showToast('Foto Berhasil Diperbarui', 'Foto profil Anda berhasil diunggah dan disimpan di peramban.', 'success');
+        closeModal(photoModal);
+        photoUploadInput.value = '';
       };
       reader.readAsDataURL(file);
     });
   }
 
-  if (resetPhotoBtn) {
-    resetPhotoBtn.addEventListener('click', () => {
-      const memberId = targetMemberInput.value;
-      localStorage.removeItem(AVATAR_KEY_PREFIX + memberId);
-      const imgEl = document.getElementById(`avatar-img-${memberId}`);
-      if (imgEl) {
-        imgEl.src = `assets/images/${memberId}.svg`;
-        showToast('Foto Direset', 'Foto profil dikembalikan ke gambar standar.', 'info');
+  // 2. Apply photo from Web URL
+  if (btnApplyPhotoUrl && photoUrlInput) {
+    btnApplyPhotoUrl.addEventListener('click', () => {
+      const url = photoUrlInput.value.trim();
+      if (!url) {
+        showToast('Peringatan', 'Silakan masukkan tautan (URL) gambar yang valid.', 'info');
+        return;
+      }
+
+      // Preload test to verify image URL
+      const tempImg = new Image();
+      tempImg.onload = () => {
+        setSavedAvatar(url);
+        showToast('Foto Berhasil Diterapkan', 'Foto profil dari tautan web berhasil disimpan.', 'success');
+        closeModal(photoModal);
+        photoUrlInput.value = '';
+      };
+      tempImg.onerror = () => {
+        showToast('Gagal Memuat Gambar', 'Tautan gambar tidak dapat diakses atau bukan format gambar valid.', 'info');
+      };
+      tempImg.src = url;
+    });
+  }
+
+  // 3. Preset avatar character selection
+  document.querySelectorAll('.preset-avatar-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const src = item.getAttribute('data-preset-src');
+      if (src) {
+        setSavedAvatar(src);
+        showToast('Avatar Dipilih', 'Karakter avatar pilihan Anda berhasil diterapkan.', 'success');
         closeModal(photoModal);
       }
+    });
+  });
+
+  // 4. Reset photo to default
+  if (resetPhotoBtn) {
+    resetPhotoBtn.addEventListener('click', () => {
+      localStorage.removeItem(AVATAR_KEY);
+      localStorage.removeItem('karya_custom_avatar_team-1');
+      applyAvatarToAllElements(DEFAULT_AVATAR);
+      showToast('Foto Direset', 'Foto profil dikembalikan ke gambar standar.', 'info');
+      closeModal(photoModal);
     });
   }
 

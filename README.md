@@ -13,8 +13,8 @@ Aplikasi web modern berbasis **HTML dan JavaScript murni** yang dirancang untuk 
 | **3. Halaman Kontak** | Selesai | Formulir kirim pesan interaktif, riwayat pesan lokal (*Local Inbox* di peramban), dan kanal jejaring profesional. |
 | **4. Konsep Warna** | Selesai | **Light Theme** elegan dengan latar belakang bersih (*slate-50*), kartu putih dengan bayangan lembut, dan aksen biru (*primary indigo*). |
 | **5. Gaya Bahasa** | Selesai | **Semi-formal** bahasa Indonesia yang santun, komunikatif, dan profesional. |
-| **6. Gambar & Foto** | Selesai | Foto profil anggota tim (disertai fitur interaktif ganti/unggah foto langsung di browser) serta 3 gambar ilustrasi vektor modern di setiap halaman. |
-| **7. Privasi Informasi** | Selesai | **Tidak memuat nomor HP, alamat fisik, maupun email**. Seluruh komunikasi dialihkan ke formulir interaktif dan platform sosial profesional resmi. |
+| **6. Gambar & Foto** | Selesai | **Foto saya yang bisa diubah-ubah**: Tampil di Halaman Utama (Hero), Halaman Profil, dan Navigasi. Dapat diubah via Unggah Berkas lokal (JPG/PNG/WebP), Link URL gambar web, atau Pilihan Avatar bawaan, tersimpan otomatis di LocalStorage. Ditambah 3 gambar ilustrasi vektor modern. |
+| **7. Privasi Informasi** | Selesai | **Sama sekali tidak memuat nomor HP, alamat fisik, maupun email**. Seluruh komunikasi dialihkan ke formulir interaktif dan akun sosial profesional resmi (GitHub, LinkedIn, Dribbble, Instagram). |
 | **8. Siap untuk Vercel** | Selesai | Struktur statis murni tanpa proses build kompleks, dilengkapi file `vercel.json` dan `package.json`. |
 | **9. Menu Login (Admin & User)** | Selesai | Sistem login peran ganda (*Administrator* & *Pengguna Biasa*), proteksi rute, dashboard khusus, dan tombol masuk demo instan (*1-Click Demo*). |
 | **10. Edit Nama, Profil & Kontak** | Selesai | **Khusus Administrator**: Panel CMS terpadu untuk mengubah nama lengkap, peran, headline, biografi, keahlian teknis, dan akun kontak resmi yang langsung ter-update di seluruh web. |
@@ -52,8 +52,10 @@ web-portfolio/
         ├── hero-illustration.svg     # Ilustrasi Halaman Utama
         ├── profile-illustration.svg  # Ilustrasi Halaman Profil
         ├── contact-illustration.svg  # Ilustrasi Halaman Kontak
-        ├── team-1.svg                # Foto profil anggota 1
-        └── team-2.svg                # Foto profil anggota 2
+        ├── team-1.svg                # Avatar Bawaan 1
+        ├── team-2.svg                # Avatar Bawaan 2
+        ├── team-3.svg                # Avatar Bawaan 3
+        └── team-4.svg                # Avatar Bawaan 4
 ```
 
 ---

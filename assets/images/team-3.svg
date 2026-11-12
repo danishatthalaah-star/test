@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="avatarBg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E0F2FE" />
+      <stop offset="100%" stop-color="#BAE6FD" />
+    </linearGradient>
+    <linearGradient id="shirtGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#0369A1" />
+    </linearGradient>
+    <clipPath id="avatarClip3">
+      <circle cx="150" cy="150" r="140" />
+    </clipPath>
+  </defs>
+  <circle cx="150" cy="150" r="145" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="6" />
+  <g clip-path="url(#avatarClip3)">
+    <rect x="0" y="0" width="300" height="300" fill="url(#avatarBg3)" />
+    <circle cx="70" cy="70" r="50" fill="#38BDF8" opacity="0.3" />
+    <!-- Body -->
+    <path d="M 50 310 C 60 225 110 210 150 210 C 190 210 240 225 250 310 Z" fill="url(#shirtGrad3)" />
+    <polygon points="150,225 132,210 168,210" fill="#FFFFFF" />
+    <!-- Neck -->
+    <rect x="136" y="165" width="28" height="35" rx="6" fill="#FCD34D" />
+    <!-- Head -->
+    <ellipse cx="150" cy="138" rx="42" ry="46" fill="#FDE68A" />
+    <!-- Hair Modern Pompadour -->
+    <path d="M 104 125 C 102 75 130 60 155 60 C 180 60 196 78 196 120 C 185 102 170 94 150 94 C 130 94 115 106 104 125 Z" fill="#334155" />
+    <!-- Ears -->
+    <circle cx="106" cy="140" r="8" fill="#FDE68A" />
+    <circle cx="194" cy="140" r="8" fill="#FDE68A" />
+    <!-- Eyes -->
+    <circle cx="134" cy="132" r="4.5" fill="#0F172A" />
+    <circle cx="166" cy="132" r="4.5" fill="#0F172A" />
+    <circle cx="135" cy="130" r="1.5" fill="#FFFFFF" />
+    <circle cx="167" cy="130" r="1.5" fill="#FFFFFF" />
+    <!-- Smile -->
+    <path d="M 138 156 Q 150 166 162 156" stroke="#B45309" stroke-width="2.5" stroke-linecap="round" fill="none" />
+  </g>
+</svg>
