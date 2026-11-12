@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="pGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#6D28D9" />
+    </linearGradient>
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <filter id="pShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0F172A" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- Background decorative elements -->
+  <circle cx="160" cy="120" r="80" fill="#EEF2FF" />
+  <circle cx="440" cy="300" r="100" fill="#F0FDFA" />
+  <ellipse cx="300" cy="390" rx="230" ry="20" fill="#E2E8F0" opacity="0.6" />
+
+  <!-- Center Team Concept & Canvas -->
+  <g filter="url(#pShadow)">
+    <rect x="120" y="70" width="360" height="290" rx="20" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" />
+    
+    <!-- Header banner in card -->
+    <path d="M 120 90 A 20 20 0 0 1 140 70 L 460 70 A 20 20 0 0 1 480 90 L 480 150 L 120 150 Z" fill="#F8FAFC" />
+    <circle cx="150" cy="110" r="18" fill="#DBEAFE" />
+    <path d="M 144 110 L 149 115 L 157 106" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <rect x="180" y="100" width="130" height="10" rx="5" fill="#1E293B" />
+    <rect x="180" y="116" width="90" height="7" rx="3.5" fill="#94A3B8" />
+
+    <!-- Vision & Goals list -->
+    <g transform="translate(150, 175)">
+      <!-- Item 1 -->
+      <circle cx="12" cy="12" r="12" fill="#EFF6FF" />
+      <path d="M 9 12 L 11 14 L 15 10" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      <rect x="36" y="8" width="180" height="8" rx="4" fill="#334155" />
+      <!-- Item 2 -->
+      <circle cx="12" cy="46" r="12" fill="#F3E8FF" />
+      <path d="M 9 46 L 11 48 L 15 44" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      <rect x="36" y="42" width="220" height="8" rx="4" fill="#334155" />
+      <!-- Item 3 -->
+      <circle cx="12" cy="80" r="12" fill="#ECFDF5" />
+      <path d="M 9 80 L 11 82 L 15 78" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      <rect x="36" y="76" width="150" height="8" rx="4" fill="#334155" />
+      <!-- Item 4 -->
+      <circle cx="12" cy="114" r="12" fill="#FFFBEB" />
+      <path d="M 9 114 L 11 116 L 15 112" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      <rect x="36" y="110" width="190" height="8" rx="4" fill="#334155" />
+    </g>
+
+    <rect x="150" y="325" width="300" height="15" rx="7.5" fill="#F1F5F9" />
+    <rect x="150" y="325" width="210" height="15" rx="7.5" fill="url(#pGrad1)" />
+  </g>
+
+  <!-- Left Floating Card: Idea / Innovation -->
+  <g filter="url(#pShadow)">
+    <rect x="50" y="190" width="120" height="75" rx="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+    <circle cx="85" cy="225" r="18" fill="#FEF3C7" />
+    <!-- Lightbulb -->
+    <path d="M 85 215 C 80 215 77 219 77 223 C 77 226 79 228 81 230 L 81 233 L 89 233 L 89 230 C 91 228 93 226 93 223 C 93 219 90 215 85 215 Z" fill="#F59E0B" />
+    <rect x="83" y="234" width="4" height="2" fill="#D97706" />
+    <rect x="115" y="217" width="45" height="7" rx="3.5" fill="#1E293B" />
+    <rect x="115" y="229" width="30" height="5" rx="2.5" fill="#94A3B8" />
+  </g>
+
+  <!-- Right Floating Card: Growth & Teamwork -->
+  <g filter="url(#pShadow)">
+    <rect x="420" y="130" width="135" height="75" rx="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+    <circle cx="450" cy="165" r="18" fill="#ECFDF5" />
+    <!-- Upward arrow / rocket -->
+    <path d="M 450 156 L 458 166 L 453 166 L 453 174 L 447 174 L 447 166 L 442 166 Z" fill="#10B981" />
+    <rect x="478" y="157" width="60" height="7" rx="3.5" fill="#1E293B" />
+    <rect x="478" y="169" width="45" height="5" rx="2.5" fill="#10B981" />
+  </g>
+
+  <!-- Floating Target / Trophy (Bottom right) -->
+  <g filter="url(#pShadow)">
+    <circle cx="480" cy="280" r="32" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+    <circle cx="480" cy="280" r="22" fill="#F3E8FF" />
+    <circle cx="480" cy="280" r="12" fill="#8B5CF6" />
+    <circle cx="480" cy="280" r="4" fill="#FFFFFF" />
+  </g>
+
+  <!-- Sparkles and connectors -->
+  <circle cx="100" cy="90" r="5" fill="#3B82F6" />
+  <circle cx="510" cy="80" r="4" fill="#F59E0B" />
+  <circle cx="480" cy="380" r="6" fill="#10B981" opacity="0.8" />
+</svg>

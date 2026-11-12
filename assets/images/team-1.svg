@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="avatarBg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E0E7FF" />
+      <stop offset="100%" stop-color="#C7D2FE" />
+    </linearGradient>
+    <linearGradient id="shirtGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <clipPath id="avatarClip1">
+      <circle cx="150" cy="150" r="140" />
+    </clipPath>
+  </defs>
+
+  <!-- Circular Base -->
+  <circle cx="150" cy="150" r="145" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="6" />
+  
+  <g clip-path="url(#avatarClip1)">
+    <!-- Background Circle Fill -->
+    <rect x="0" y="0" width="300" height="300" fill="url(#avatarBg1)" />
+    <circle cx="240" cy="80" r="60" fill="#818CF8" opacity="0.25" />
+
+    <!-- Body / Shoulders -->
+    <path d="M 50 310 C 60 230 110 215 150 215 C 190 215 240 230 250 310 Z" fill="url(#shirtGrad1)" />
+    <!-- Collar & tie/shirt detail -->
+    <polygon points="150,230 130,215 170,215" fill="#FFFFFF" />
+    <polygon points="150,232 145,215 155,215" fill="#3B82F6" />
+
+    <!-- Neck -->
+    <rect x="135" y="170" width="30" height="35" rx="6" fill="#FCD34D" />
+
+    <!-- Head / Face -->
+    <ellipse cx="150" cy="140" rx="42" ry="48" fill="#FDE68A" />
+
+    <!-- Hair -->
+    <path d="M 105 130 C 105 85 130 75 150 75 C 175 75 195 88 195 125 C 185 110 170 100 150 100 C 130 100 115 112 105 130 Z" fill="#1E293B" />
+    <!-- Ears -->
+    <circle cx="106" cy="142" r="8" fill="#FDE68A" />
+    <circle cx="194" cy="142" r="8" fill="#FDE68A" />
+
+    <!-- Eyebrows -->
+    <path d="M 125 122 Q 135 118 142 122" stroke="#1E293B" stroke-width="2.5" stroke-linecap="round" fill="none" />
+    <path d="M 158 122 Q 165 118 175 122" stroke="#1E293B" stroke-width="2.5" stroke-linecap="round" fill="none" />
+
+    <!-- Eyes -->
+    <circle cx="134" cy="132" r="4" fill="#0F172A" />
+    <circle cx="166" cy="132" r="4" fill="#0F172A" />
+    <circle cx="135" cy="130" r="1.5" fill="#FFFFFF" />
+    <circle cx="167" cy="130" r="1.5" fill="#FFFFFF" />
+
+    <!-- Modern Stylish Glasses -->
+    <rect x="122" y="124" width="23" height="18" rx="6" fill="none" stroke="#2563EB" stroke-width="2.5" />
+    <rect x="155" y="124" width="23" height="18" rx="6" fill="none" stroke="#2563EB" stroke-width="2.5" />
+    <line x1="145" y1="131" x2="155" y2="131" stroke="#2563EB" stroke-width="2.5" />
+
+    <!-- Nose -->
+    <path d="M 150 135 L 148 146 L 152 146" stroke="#D97706" stroke-width="1.8" stroke-linecap="round" fill="none" />
+
+    <!-- Friendly Smile -->
+    <path d="M 139 156 Q 150 166 161 156" stroke="#B45309" stroke-width="2.5" stroke-linecap="round" fill="none" />
+  </g>
+</svg>

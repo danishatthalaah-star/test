@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Studio Karya Digital | Solusi Web & Desain Kreatif</title>
+  <meta name="description" content="Website profil dan portofolio Studio Karya Digital. Dibangun murni menggunakan HTML dan JavaScript dengan tema terang modern. Siap digunakan secara lokal maupun di Vercel.">
+  <meta name="theme-color" content="#FFFFFF">
+  
+  <!-- Google Fonts: Plus Jakarta Sans for clean modern typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===================================================================
+       HEADER & NAVIGASI
+       =================================================================== -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="#beranda" class="brand-logo" data-navigate="page-home">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+        <span id="navBrandText">PORTFOLIO<span style="color: var(--primary);">SAYA</span></span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li>
+            <a class="nav-link active" data-target="page-home" data-navigate="page-home">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              Beranda
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" data-target="page-profile" data-navigate="page-profile">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              Profil Kami
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" data-target="page-contact" data-navigate="page-contact">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              Hubungi Kami
+            </a>
+          </li>
+          <!-- Tautan Dashboard (Ditampilkan saat Login) -->
+          <li id="navItemDashboard" style="display: none;">
+            <a class="nav-link" id="navDashboardLink" data-target="page-admin-dashboard" data-navigate="page-admin-dashboard">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              <span id="navDashboardText">Dashboard</span>
+            </a>
+          </li>
+          <!-- Tautan Masuk Mobile -->
+          <li id="navItemMobileLogin" style="display: none;">
+            <a class="nav-link" data-target="page-login" data-navigate="page-login">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+              Masuk / Login
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Guest View: Tombol Masuk & Konsultasi -->
+        <div id="navGuestActions" style="display: flex; align-items: center; gap: 0.6rem;">
+          <a href="#masuk" class="btn btn-secondary btn-sm" data-navigate="page-login" id="btnNavLogin">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+            <span>Masuk</span>
+          </a>
+          <a href="#kontak" class="btn btn-primary btn-sm" data-navigate="page-contact">
+            Konsultasi Ide
+          </a>
+        </div>
+
+        <!-- Logged-in View: User Info & Tombol Keluar -->
+        <div id="navUserActions" style="display: none; align-items: center; gap: 0.6rem;">
+          <div class="user-pill" id="navUserPill" title="Klik untuk membuka dashboard Anda">
+            <span class="user-avatar-circle" id="navUserInitial">A</span>
+            <div class="user-pill-text">
+              <strong id="navUserName">Admin</strong>
+              <span class="role-badge" id="navUserRole">Admin</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="btnLogout" title="Keluar dari sesi akun">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <span>Keluar</span>
+          </button>
+        </div>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Buka Menu Navigasi">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================================================================
+         1. HALAMAN UTAMA (BERANDA)
+         =================================================================== -->
+    <section id="page-home" class="page-view active">
+      <!-- Hero Section -->
+      <div class="section" style="padding-top: 2rem;">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <div class="pill-badge">
+              <span class="pill-dot"></span>
+              <span id="heroBadgeText">Portofolio Pribadi & Pengembang Web</span>
+            </div>
+            <h1 class="hero-title" id="heroHeadlineText">
+              Membangun Solusi Web yang <span class="gradient-text">Efisien, Estetik, & Terarah</span>
+            </h1>
+            <p class="hero-description" id="heroDescText">
+              Selamat datang di portofolio pribadi saya. Saya berfokus merancang antarmuka web yang intuitif dan berkinerja tinggi menggunakan teknologi standar web terbuka, siap menghadirkan pengalaman digital terbaik bagi setiap pengunjung.
+            </p>
+            <div class="hero-actions">
+              <a href="#profil" class="btn btn-primary" data-navigate="page-profile">
+                <span>Lihat Profil Saya</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <a href="#kontak" class="btn btn-secondary" data-navigate="page-contact">
+                <span>Hubungi Saya</span>
+              </a>
+            </div>
+            <div class="hero-meta">
+              <div class="meta-item">
+                <svg class="meta-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>HTML & JS Native</span>
+              </div>
+              <div class="meta-item">
+                <svg class="meta-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Light Theme Elegan</span>
+              </div>
+              <div class="meta-item">
+                <svg class="meta-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Vercel Optimized</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="illustration-wrap">
+              <img src="assets/images/hero-illustration.svg" alt="Ilustrasi Pengembangan Aplikasi Web Modern" width="520" height="390">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nilai Unggulan / Karakteristik -->
+      <div class="section section-alt">
+        <div class="container">
+          <div class="section-header">
+            <div class="pill-badge">Prinsip & Nilai Kerja</div>
+            <h2 class="section-title">Pendekatan Kami dalam Menciptakan Produk Web</h2>
+            <p class="section-subtitle">Setiap karya yang kami hasilkan berakar pada keseimbangan antara performa kode yang optimal dan estetika antarmuka yang bersahabat.</p>
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon-box feature-icon-blue">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+              </div>
+              <h3 class="feature-title">Arsitektur Bersih & Ringan</h3>
+              <p class="feature-desc">Dibangun langsung menggunakan fondasi HTML5 dan Vanilla JavaScript tanpa bloatware, memastikan kecepatan buka yang instan di peramban mana pun.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon-box feature-icon-cyan">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+              </div>
+              <h3 class="feature-title">Desain UI/UX Ramah Pengguna</h3>
+              <p class="feature-desc">Tata letak terarah dengan palet warna light theme yang nyaman di mata, kontras berstandar aksesibilitas, serta tipografi yang mudah dipindai.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon-box feature-icon-purple">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+              </div>
+              <h3 class="feature-title">Presisi Multi-Perangkat</h3>
+              <p class="feature-desc">Sistem tata letak CSS Grid & Flexbox yang fleksibel, beradaptasi secara mulus pada ponsel pintar, tablet, maupun layar resolusi tinggi.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon-box feature-icon-emerald">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <h3 class="feature-title">Siap Rilis di Vercel</h3>
+              <p class="feature-desc">Struktur file tertata rapi dengan konfigurasi static edge hosting terverifikasi, memudahkan proses penyebaran ke domain publik dalam hitungan detik.</p>
+            </div>
+          </div>
+
+          <!-- Highlight Metrik -->
+          <div class="stats-bar">
+            <div class="stat-item">
+              <h3>100%</h3>
+              <p>Vanilla Web Native</p>
+            </div>
+            <div class="stat-item">
+              <h3>&lt; 0.8s</h3>
+              <p>Kecepatan Muat Standar</p>
+            </div>
+            <div class="stat-item">
+              <h3>15+</h3>
+              <p>Eksplorasi Proyek Digital</p>
+            </div>
+            <div class="stat-item">
+              <h3>Light</h3>
+              <p>Konsep Visual Terang</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pameran Karya Pilihan -->
+      <div class="section">
+        <div class="container">
+          <div class="section-header">
+            <div class="pill-badge">Eksplorasi & Proyek</div>
+            <h2 class="section-title">Karya Pilihan Terkini</h2>
+            <p class="section-subtitle">Beberapa modul aplikasi percontohan yang telah kami selesaikan dengan fokus fungsionalitas dan kemudahan eksplorasi.</p>
+          </div>
+
+          <div class="portfolio-filter">
+            <button class="filter-btn active" data-filter="all">Semua Kategori</button>
+            <button class="filter-btn" data-filter="webapp">Web App</button>
+            <button class="filter-btn" data-filter="uiux">UI/UX Design</button>
+            <button class="filter-btn" data-filter="dashboard">Dashboard</button>
+          </div>
+
+          <div class="portfolio-grid">
+            <!-- Card 1 -->
+            <div class="portfolio-card" data-category="webapp">
+              <div class="portfolio-thumb">
+                <span class="portfolio-badge">Web App</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </div>
+              <div class="portfolio-body">
+                <h3 class="portfolio-title">EduPortal Interaktif</h3>
+                <p class="portfolio-desc">Aplikasi edukasi mandiri dengan sistem navigasi bab adaptif, pelacak kemajuan baca, dan kuis interaktif.</p>
+                <div class="portfolio-tags">
+                  <span class="tag">HTML5</span>
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">Local Storage</span>
+                </div>
+                <button class="portfolio-link-btn view-project-btn" data-project-id="proj-1">Lihat Detail Spesifikasi</button>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="portfolio-card" data-category="uiux">
+              <div class="portfolio-thumb">
+                <span class="portfolio-badge">UI/UX</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                </svg>
+              </div>
+              <div class="portfolio-body">
+                <h3 class="portfolio-title">Lumina Design System</h3>
+                <p class="portfolio-desc">Standarisasi token desain antarmuka, variabel warna semantik, dan komponen responsif untuk produk digital.</p>
+                <div class="portfolio-tags">
+                  <span class="tag">Design Tokens</span>
+                  <span class="tag">CSS Variables</span>
+                  <span class="tag">Figma</span>
+                </div>
+                <button class="portfolio-link-btn view-project-btn" data-project-id="proj-2">Lihat Detail Spesifikasi</button>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="portfolio-card" data-category="dashboard">
+              <div class="portfolio-thumb">
+                <span class="portfolio-badge">Dashboard</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+              </div>
+              <div class="portfolio-body">
+                <h3 class="portfolio-title">Analitika Bisnis Ringkas</h3>
+                <p class="portfolio-desc">Antarmuka metrik visual dengan visualisasi SVG dinamis yang cepat dimuat untuk memantau performa harian.</p>
+                <div class="portfolio-tags">
+                  <span class="tag">SVG Chart</span>
+                  <span class="tag">Flex Layout</span>
+                  <span class="tag">Lightweight</span>
+                </div>
+                <button class="portfolio-link-btn view-project-btn" data-project-id="proj-3">Lihat Detail Spesifikasi</button>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="portfolio-card" data-category="webapp">
+              <div class="portfolio-thumb">
+                <span class="portfolio-badge">Web App</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+              </div>
+              <div class="portfolio-body">
+                <h3 class="portfolio-title">Katalog Produk Sentra</h3>
+                <p class="portfolio-desc">Portal penjelajah produk lokal dengan pencarian instan sisi klien tanpa jeda muat ulang halaman.</p>
+                <div class="portfolio-tags">
+                  <span class="tag">Instant Search</span>
+                  <span class="tag">Vanilla JS</span>
+                  <span class="tag">CSS Grid</span>
+                </div>
+                <button class="portfolio-link-btn view-project-btn" data-project-id="proj-4">Lihat Detail Spesifikasi</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         2. HALAMAN PROFIL
+         =================================================================== -->
+    <section id="page-profile" class="page-view">
+      <div class="section" style="padding-top: 2rem;">
+        <div class="container">
+          <!-- Admin Edit Shortcut Banner (muncul saat Admin Login) -->
+          <div class="admin-edit-shortcut-banner" id="profileAdminShortcutBanner" style="display: none;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span class="role-badge role-admin">Akses Admin</span>
+              <span style="font-size: 0.92rem; color: #1E40AF; font-weight: 600;">Anda masuk sebagai Administrator. Anda dapat mengubah nama, profil, dan kontak secara langsung.</span>
+            </div>
+            <button class="btn btn-primary btn-sm" id="btnGoToCmsFromProfile">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+              <span>Ubah Nama, Profil &amp; Kontak</span>
+            </button>
+          </div>
+
+          <!-- Intro Grid with Illustration -->
+          <div class="profile-intro-grid">
+            <div class="profile-narrative">
+              <div class="pill-badge" id="profileBadgeText">Tentang Saya</div>
+              <h2 id="aboutTitleText">Mendedikasikan Keahlian untuk Produk Digital Berkualitas</h2>
+              <p id="aboutBio1Text">
+                Saya percaya bahwa sebuah website tidak hanya harus enak dilihat, tetapi juga harus menyenangkan saat digunakan, andal, serta mudah dikelola. Dengan pendekatan semi-formal yang komunikatif, saya berkolaborasi erat untuk menerjemahkan gagasan digital Anda menjadi aplikasi nyata.
+              </p>
+              <p id="aboutBio2Text">
+                Fokus utama saya terletak pada arsitektur web modern yang bersih, efisiensi penulisan kode HTML dan JavaScript, serta penerapan prinsip estetika terang (light theme) yang jernih dan profesional.
+              </p>
+              <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="#kontak" class="btn btn-primary" data-navigate="page-contact">Mari Diskusikan Ide Anda</a>
+                <button class="btn btn-secondary" id="btnQuickEditProfileTrigger" style="display: none;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                  <span>Edit Profil Saya</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="hero-visual">
+              <div class="illustration-wrap">
+                <img src="assets/images/profile-illustration.svg" alt="Ilustrasi Proses Kolaborasi" width="520" height="390">
+              </div>
+            </div>
+          </div>
+
+          <!-- Bagian Kartu Profil Utama -->
+          <div class="section-header" style="margin-top: 2rem; margin-bottom: 2.5rem;">
+            <div class="pill-badge">Identitas &amp; Keahlian</div>
+            <h2 class="section-title">Profil Personal Saya</h2>
+            <p class="section-subtitle">
+              Berikut adalah representasi profil personal saya. Foto dapat diganti dengan foto asli Anda melalui tombol kamera, dan teks dapat disesuaikan melalui panel Admin.
+            </p>
+          </div>
+
+          <!-- Featured Profile Card -->
+          <div class="profile-card-featured">
+            <div class="profile-featured-avatar-wrap">
+              <img id="avatar-img-team-1" class="profile-featured-avatar-img" src="assets/images/team-1.svg" alt="Foto Profil Saya">
+              <button class="avatar-badge-btn change-photo-btn" data-member-id="team-1" title="Ganti foto profil Anda">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+              </button>
+            </div>
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+                <span class="role-badge role-user" style="background: #ECFDF5; color: #047857; font-size: 0.78rem;">🟢 Tersedia untuk Kolaborasi</span>
+                <span style="font-size: 0.82rem; color: #64748B;">• Web Developer &amp; UI/UX</span>
+              </div>
+              <h3 class="team-name" id="profileCardName" style="font-size: 1.8rem; margin-bottom: 0.25rem;">Abby Pratama</h3>
+              <div class="team-role" id="profileCardRole" style="font-size: 1.05rem; margin-bottom: 1rem;">Lead Web Architect &amp; Developer</div>
+              <p class="team-bio" id="profileCardBio" style="font-size: 0.98rem; margin-bottom: 1.5rem; line-height: 1.65;">
+                Berdedikasi merancang sistem web berbasis HTML5 dan JavaScript yang terstruktur, menjaga agar setiap interaksi aplikasi berjalan mulus, cepat, dan mudah diakses di berbagai lingkungan peramban.
+              </p>
+              
+              <div class="team-skills-title" style="text-align: left; margin-bottom: 0.75rem;">Keahlian Teknis &amp; Penguasaan Alat</div>
+              <div class="team-skills-list" id="profileSkillsContainer" style="justify-content: flex-start;">
+                <span class="skill-pill">HTML5 Semantik</span>
+                <span class="skill-pill">Modern JavaScript</span>
+                <span class="skill-pill">UI/UX Design</span>
+                <span class="skill-pill">Light Theme System</span>
+                <span class="skill-pill">Web Performance</span>
+                <span class="skill-pill">Vercel Deployment</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metodologi Kerja Kami -->
+          <div class="principles-box">
+            <div style="text-align: center; max-width: 600px; margin: 0 auto 2rem;">
+              <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main);">Alur Pengerjaan yang Kami Terapkan</h3>
+              <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Sistematika kerja terbuka dari tahap penjajakan kebutuhan hingga publikasi produk.</p>
+            </div>
+
+            <div class="principles-grid">
+              <div class="principle-item">
+                <div class="principle-num">01</div>
+                <div>
+                  <h4 class="principle-title">Eksplorasi Kebutuhan</h4>
+                  <p class="principle-text">Memahami konteks penggunaan, tujuan utama aplikasi, dan preferensi estetika pengguna secara mendalam.</p>
+                </div>
+              </div>
+
+              <div class="principle-item">
+                <div class="principle-num">02</div>
+                <div>
+                  <h4 class="principle-title">Desain & Prototipe</h4>
+                  <p class="principle-text">Menyusun tata visual bertema terang dengan hierarki konten yang jelas dan mudah dinavigasi.</p>
+                </div>
+              </div>
+
+              <div class="principle-item">
+                <div class="principle-num">03</div>
+                <div>
+                  <h4 class="principle-title">Pengembangan Bersih</h4>
+                  <p class="principle-text">Menerjemahkan rancangan ke dalam HTML dan JavaScript murni yang ringan dan teratur tanpa beban dependensi rumit.</p>
+                </div>
+              </div>
+
+              <div class="principle-item">
+                <div class="principle-num">04</div>
+                <div>
+                  <h4 class="principle-title">Penyempurnaan & Rilis</h4>
+                  <p class="principle-text">Pengujian kompatibilitas lokal serta optimasi konfigurasi peramban sebelum dideploy ke Vercel.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         3. HALAMAN KONTAK
+         Catatan: Tanpa Nomor HP, Alamat, dan Email sesuai spesifikasi!
+         =================================================================== -->
+    <section id="page-contact" class="page-view">
+      <div class="section" style="padding-top: 2rem;">
+        <div class="container">
+          
+          <!-- Banner Penjelasan Privasi & Kanal Resmi -->
+          <div class="contact-privacy-banner">
+            <div class="privacy-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <div class="privacy-content">
+              <h4>Komunikasi Eksklusif Melalui Kanal Resmi</h4>
+              <p id="contactIntroText">
+                Untuk menjaga privasi bersama serta efisiensi penanganan pesan, saya <strong>tidak mencantumkan nomor telepon, alamat kantor fisik, maupun alamat surel langsung</strong>. Seluruh korespondensi proyek dan kolaborasi dilayani melalui formulir interaktif di bawah ini dan jejaring profesional resmi saya.
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-main-grid">
+            <!-- Formulir Kirim Pesan Interaktif -->
+            <div class="contact-form-card">
+              <div style="margin-bottom: 2rem;">
+                <div class="pill-badge" style="margin-bottom: 0.75rem;">Formulir Komunikasi</div>
+                <h2 style="font-size: 1.85rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">Sampaikan Pesan Anda</h2>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Silakan isi formulir berikut dengan jelas. Pesan Anda akan langsung dicatat ke dalam antrean korespondensi.</p>
+              </div>
+
+              <form id="contactForm">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="senderName">Nama Lengkap Anda <span class="required">*</span></label>
+                    <input type="text" id="senderName" class="form-control" placeholder="Contoh: Pratama Wicaksana" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="senderCategory">Kategori Diskusi <span class="required">*</span></label>
+                    <select id="senderCategory" class="form-control" required>
+                      <option value="Pengembangan Web" selected>Pengembangan Aplikasi Web</option>
+                      <option value="Desain Antarmuka">Desain UI/UX & Prototipe</option>
+                      <option value="Kolaborasi Terbuka">Peluang Kolaborasi Terbuka</option>
+                      <option value="Umpan Balik">Apresiasi & Saran</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="senderSubject">Subjek / Topik Utama <span class="required">*</span></label>
+                  <input type="text" id="senderSubject" class="form-control" placeholder="Contoh: Diskusi Perancangan Landing Page Portofolio" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="senderMessage">Isi Pesan Lengkap <span class="required">*</span></label>
+                  <textarea id="senderMessage" class="form-control" placeholder="Tuliskan uraian kebutuhan, pertanyaan, atau ide yang ingin Anda sampaikan..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.95rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                  <span>Kirimkan Pesan Sekarang</span>
+                </button>
+              </form>
+            </div>
+
+            <!-- Sidebar Kanal Alternatif & Ilustrasi Kontak -->
+            <div class="contact-sidebar">
+              <!-- Ilustrasi Kontak -->
+              <div style="background: #FFFFFF; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; text-align: center; box-shadow: var(--shadow-sm);">
+                <img src="assets/images/contact-illustration.svg" alt="Ilustrasi Koneksi Komunikasi" style="margin: 0 auto; max-height: 220px;">
+              </div>
+
+              <!-- Jejaring Komunitas Resmi (Hanya Username/Platform) -->
+              <div class="contact-channels-card">
+                <h3 class="channels-title">Jejaring Profesional Saya</h3>
+                <p class="channels-subtitle">Temukan rekam jejak publik dan kontribusi kode saya melalui platform terbuka berikut:</p>
+
+                <div class="channel-list">
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="channel-item">
+                    <div class="channel-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                      </svg>
+                    </div>
+                    <div class="channel-info">
+                      <strong>GitHub Repositori</strong>
+                      <span id="contactGithubHandle">@abby-pratama</span>
+                    </div>
+                  </a>
+
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="channel-item">
+                    <div class="channel-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                      </svg>
+                    </div>
+                    <div class="channel-info">
+                      <strong>LinkedIn Network</strong>
+                      <span id="contactLinkedinHandle">/in/abby-pratama</span>
+                    </div>
+                  </a>
+
+                  <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" class="channel-item">
+                    <div class="channel-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94"></path>
+                        <path d="M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32"></path>
+                        <path d="M8.56 2.75c4.37 6 6 9.42 8 17.72"></path>
+                      </svg>
+                    </div>
+                    <div class="channel-info">
+                      <strong>Dribbble Portfolio</strong>
+                      <span id="contactDribbbleHandle">@abby-design</span>
+                    </div>
+                  </a>
+
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="channel-item">
+                    <div class="channel-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                      </svg>
+                    </div>
+                    <div class="channel-info">
+                      <strong>Instagram Resmi</strong>
+                      <span id="contactSocialHandle">@abby_instagram</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Riwayat Pesan Terkirim di Peramban Lokal -->
+              <div class="inbox-preview-card">
+                <div class="inbox-header">
+                  <div class="inbox-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                      <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <span>Pesan Terkirim (Lokal)</span>
+                  </div>
+                  <span class="inbox-badge" id="inboxCount">0</span>
+                </div>
+                <div class="inbox-list" id="inboxList">
+                  <!-- Rendered via JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         4. HALAMAN MASUK (LOGIN) - ADMIN & USER BIASA
+         =================================================================== -->
+    <section id="page-login" class="page-view">
+      <div class="section" style="padding-top: 2rem;">
+        <div class="container" style="max-width: 560px;">
+          <div class="login-card">
+            <div style="text-align: center; margin-bottom: 2rem;">
+              <div class="pill-badge" style="margin-bottom: 0.75rem;">Autentikasi Akun</div>
+              <h2 style="font-size: 2rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">Portal Masuk</h2>
+              <p style="color: var(--text-muted); font-size: 0.95rem;">
+                Silakan pilih peran akun Anda untuk mengakses fitur khusus Administrator atau Layanan Pengguna Terdaftar.
+              </p>
+            </div>
+
+            <!-- Role Selector Tabs -->
+            <div class="role-selector-wrap">
+              <button type="button" class="role-tab active" data-login-role="user" id="roleTabUser">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <span>Pengguna Biasa</span>
+              </button>
+              <button type="button" class="role-tab" data-login-role="admin" id="roleTabAdmin">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <span>Administrator</span>
+              </button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+              <input type="hidden" id="loginRole" value="user">
+
+              <div class="form-group">
+                <label class="form-label" for="loginUsername">Nama Pengguna / ID Akun <span class="required">*</span></label>
+                <div class="input-with-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  <input type="text" id="loginUsername" class="form-control" placeholder="Contoh: user" required autocomplete="username">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="loginPassword">Kata Sandi <span class="required">*</span></label>
+                <div class="input-with-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <input type="password" id="loginPassword" class="form-control" placeholder="Masukkan kata sandi" required autocomplete="current-password">
+                  <button type="button" class="password-toggle-btn" id="togglePasswordVisibility" title="Lihat/Sembunyikan Sandi">
+                    <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; font-size: 0.88rem;">
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: var(--text-muted);">
+                  <input type="checkbox" id="rememberMeCheck" checked>
+                  <span>Ingat sesi masuk</span>
+                </label>
+                <span id="roleHintBadge" class="role-badge role-user">Role: User Biasa</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.9rem;" id="loginSubmitBtn">
+                <span>Masuk Sekarang</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </form>
+
+            <!-- Quick 1-Click Demo Login Box -->
+            <div class="demo-login-card">
+              <div class="demo-login-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <strong>Akses Cepat Pengujian (1-Click Demo)</strong>
+              </div>
+              <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.85rem;">
+                Klik tombol di bawah untuk mengisi kredensial dan langsung masuk otomatis:
+              </p>
+              <div class="demo-btn-grid">
+                <button type="button" class="btn-demo-quick" id="btnQuickDemoAdmin">
+                  <span class="role-badge role-admin">Administrator</span>
+                  <span>ID: <strong>admin</strong> | Sandi: <code>admin123</code></span>
+                </button>
+                <button type="button" class="btn-demo-quick" id="btnQuickDemoUser">
+                  <span class="role-badge role-user">Pengguna Biasa</span>
+                  <span>ID: <strong>user</strong> | Sandi: <code>user123</code></span>
+                </button>
+              </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+              <a href="#beranda" data-navigate="page-home" style="font-size: 0.9rem; color: var(--text-soft); display: inline-flex; align-items: center; gap: 0.4rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Kembali ke Beranda
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         5. DASHBOARD KHUSUS ADMINISTRATOR
+         =================================================================== -->
+    <section id="page-admin-dashboard" class="page-view">
+      <div class="section" style="padding-top: 2rem;">
+        <div class="container">
+          <!-- Admin Header Banner -->
+          <div class="dashboard-header-card">
+            <div class="dashboard-header-left">
+              <div class="pill-badge" style="margin-bottom: 0.5rem; background: #EEF2FF; color: #4338CA; border-color: #C7D2FE;">
+                <span class="pill-dot" style="background: #4F46E5;"></span>
+                Panel Kendali Administrator
+              </div>
+              <h2 style="font-size: 2rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.35rem;">
+                Selamat Datang, Administrator
+              </h2>
+              <p style="color: var(--text-muted); font-size: 0.95rem;">
+                Anda memiliki wewenang penuh untuk meninjau seluruh pesan yang dikirim oleh pengunjung melalui formulir kontak dan memantau status operasional sistem.
+              </p>
+            </div>
+            <div class="dashboard-header-actions">
+              <button class="btn btn-secondary btn-sm" id="btnRefreshAdminData">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                Segarkan Data
+              </button>
+              <a href="#beranda" data-navigate="page-home" class="btn btn-primary btn-sm">
+                Lihat Tampilan Publik
+              </a>
+            </div>
+          </div>
+
+          <!-- Metrics Grid -->
+          <div class="dashboard-metrics-grid">
+            <div class="metric-widget-card">
+              <div class="metric-icon-wrap" style="background: #EFF6FF; color: #2563EB;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </div>
+              <div>
+                <div class="metric-label">Total Pesan Masuk</div>
+                <div class="metric-value" id="adminTotalMessages">0</div>
+                <div class="metric-note">Tercatat di peramban lokal</div>
+              </div>
+            </div>
+
+            <div class="metric-widget-card">
+              <div class="metric-icon-wrap" style="background: #ECFDF5; color: #059669;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9 12l2 2 4-4"></path></svg>
+              </div>
+              <div>
+                <div class="metric-label">Status Operasional</div>
+                <div class="metric-value" style="color: #059669; font-size: 1.5rem;">Online & Aktif</div>
+                <div class="metric-note">Siap Deployment Vercel Edge</div>
+              </div>
+            </div>
+
+            <div class="metric-widget-card">
+              <div class="metric-icon-wrap" style="background: #F5F3FF; color: #7C3AED;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              </div>
+              <div>
+                <div class="metric-label">Tingkat Hak Akses</div>
+                <div class="metric-value" style="color: #7C3AED; font-size: 1.5rem;">Super Admin</div>
+                <div class="metric-note">Akses Baca &amp; Kelola Data</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CMS Editor: Pengaturan Profil & Kontak Saya (Khusus Admin) -->
+          <div class="cms-editor-card" id="cmsEditorCard">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+              <div>
+                <div class="pill-badge" style="margin-bottom: 0.5rem; background: #EEF2FF; color: #4338CA;">
+                  Editor Konten Web (CMS)
+                </div>
+                <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.25rem;">
+                  Kelola Nama, Profil &amp; Kontak Anda
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.92rem;">
+                  Sebagai Administrator, seluruh perubahan data di bawah ini akan langsung tersimpan dan otomatis diperbarui di Halaman Utama, Profil, dan Kontak.
+                </p>
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button type="button" class="btn btn-secondary btn-sm" id="btnResetCmsDefault" title="Kembalikan semua teks ke bawaan">
+                  ↺ Reset Bawaan
+                </button>
+              </div>
+            </div>
+
+            <!-- Editor Navigation Tabs -->
+            <div class="cms-tabs">
+              <button type="button" class="cms-tab-btn active" data-cms-tab="tab-identitas">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                1. Identitas &amp; Beranda
+              </button>
+              <button type="button" class="cms-tab-btn" data-cms-tab="tab-biografi">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                2. Profil &amp; Keahlian
+              </button>
+              <button type="button" class="cms-tab-btn" data-cms-tab="tab-kontak">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                3. Kontak &amp; Sosial Media
+              </button>
+            </div>
+
+            <form id="cmsProfileForm">
+              <!-- Pane 1: Identitas & Beranda -->
+              <div class="cms-pane active" id="pane-tab-identitas">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="cmsFullName">Nama Lengkap Anda <span class="required">*</span></label>
+                    <input type="text" id="cmsFullName" class="form-control" placeholder="Contoh: Abby Pratama" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="cmsRoleTitle">Peran / Profesi Utama <span class="required">*</span></label>
+                    <input type="text" id="cmsRoleTitle" class="form-control" placeholder="Contoh: Web Architect & Frontend Developer" required>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="cmsBrandName">Nama Brand / Inisial Logo Navbar</label>
+                    <input type="text" id="cmsBrandName" class="form-control" placeholder="Contoh: ABBYPORTFOLIO">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="cmsHeroBadge">Teks Lencana (Badge) Beranda</label>
+                    <input type="text" id="cmsHeroBadge" class="form-control" placeholder="Contoh: Portofolio Pribadi & Pengembang Web">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="cmsHeroHeadline">Judul Slogan (Headline) Halaman Utama <span class="required">*</span></label>
+                  <input type="text" id="cmsHeroHeadline" class="form-control" placeholder="Contoh: Membangun Solusi Web yang Efisien, Estetik, & Terarah" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="cmsHeroDesc">Uraian / Ringkasan Halaman Utama <span class="required">*</span></label>
+                  <textarea id="cmsHeroDesc" class="form-control" style="min-height: 90px;" required></textarea>
+                </div>
+              </div>
+
+              <!-- Pane 2: Biografi & Keahlian -->
+              <div class="cms-pane" id="pane-tab-biografi">
+                <div class="form-group">
+                  <label class="form-label" for="cmsAboutTitle">Judul Narasi Halaman Profil</label>
+                  <input type="text" id="cmsAboutTitle" class="form-control" placeholder="Contoh: Mendedikasikan Keahlian untuk Produk Digital Berkualitas">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="cmsAboutBio1">Paragraf Biografi 1</label>
+                  <textarea id="cmsAboutBio1" class="form-control" style="min-height: 90px;"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="cmsAboutBio2">Paragraf Biografi 2</label>
+                  <textarea id="cmsAboutBio2" class="form-control" style="min-height: 90px;"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="cmsSkills">Daftar Keahlian / Skills (Pisahkan dengan tanda koma)</label>
+                  <input type="text" id="cmsSkills" class="form-control" placeholder="Contoh: HTML5 Semantik, Modern JavaScript, UI/UX Design, Web Performance, Vercel">
+                  <span style="font-size: 0.8rem; color: var(--text-soft); margin-top: 0.35rem; display: block;">Setiap keahlian yang dipisahkan tanda koma akan otomatis menjadi lencana (pill) di kartu profil.</span>
+                </div>
+              </div>
+
+              <!-- Pane 3: Kontak & Sosial Media -->
+              <div class="cms-pane" id="pane-tab-kontak">
+                <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: var(--radius-sm); padding: 0.9rem 1.1rem; margin-bottom: 1.25rem; font-size: 0.88rem; color: #1E40AF;">
+                  🔒 <strong>Peringatan Privasi:</strong> Sesuai ketentuan tampilan web, nomor handphone, alamat fisik, dan email tidak disertakan. Anda dapat mengatur akun jejaring profesional publik di bawah ini.
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="cmsContactIntro">Teks Penjelasan Privasi Halaman Kontak</label>
+                  <textarea id="cmsContactIntro" class="form-control" style="min-height: 80px;"></textarea>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="cmsSocialGithub">Akun / Handle GitHub</label>
+                    <input type="text" id="cmsSocialGithub" class="form-control" placeholder="Contoh: @abby-pratama">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="cmsSocialLinkedin">Akun / Handle LinkedIn</label>
+                    <input type="text" id="cmsSocialLinkedin" class="form-control" placeholder="Contoh: /in/abby-pratama">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="cmsSocialDribbble">Akun / Handle Dribbble / Portfolio</label>
+                    <input type="text" id="cmsSocialDribbble" class="form-control" placeholder="Contoh: @abby-design">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="cmsSocialNetwork">Akun Instagram</label>
+                    <input type="text" id="cmsSocialNetwork" class="form-control" placeholder="Contoh: @abby_instagram">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Save Actions Bar -->
+              <div class="cms-actions-bar">
+                <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                  <button type="submit" class="btn btn-primary" id="btnSaveCmsProfile">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                    <span>Simpan Perubahan Nama, Profil &amp; Kontak</span>
+                  </button>
+                  <button type="button" class="btn btn-secondary" id="btnPreviewWebAfterSave">
+                    Pratinjau di Beranda
+                  </button>
+                </div>
+                <span id="cmsSaveIndicator" style="font-size: 0.85rem; color: var(--accent-emerald); font-weight: 600; display: none;">✓ Data Tersimpan di Browser</span>
+              </div>
+            </form>
+          </div>
+
+          <!-- Messages Management Table -->
+          <div class="admin-table-container">
+            <div class="admin-table-header">
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-main);">Daftar Pesan &amp; Korespondensi Pengunjung</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem;">Pesan berikut dikirimkan oleh pengunjung melalui formulir halaman kontak.</p>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="btnClearAllAdminMessages" style="color: #EF4444; border-color: #FECACA;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                Kosongkan Semua Pesan
+              </button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table" id="adminMessagesTable">
+                <thead>
+                  <tr>
+                    <th style="width: 50px;">No</th>
+                    <th>Nama Pengirim</th>
+                    <th>Kategori</th>
+                    <th>Subjek</th>
+                    <th>Waktu Masuk</th>
+                    <th style="text-align: center; width: 140px;">Tindakan</th>
+                  </tr>
+                </thead>
+                <tbody id="adminMessagesTbody">
+                  <!-- Rendered via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         6. DASHBOARD KHUSUS PENGGUNA BIASA (USER)
+         =================================================================== -->
+    <section id="page-user-dashboard" class="page-view">
+      <div class="section" style="padding-top: 2rem;">
+        <div class="container">
+          <div class="dashboard-header-card">
+            <div class="dashboard-header-left">
+              <div class="pill-badge" style="margin-bottom: 0.5rem; background: #ECFDF5; color: #047857; border-color: #A7F3D0;">
+                <span class="pill-dot" style="background: #10B981;"></span>
+                Area Layanan Pengguna Terdaftar
+              </div>
+              <h2 style="font-size: 2rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.35rem;">
+                Halo, <span id="userDashboardName">Pengguna</span>!
+              </h2>
+              <p style="color: var(--text-muted); font-size: 0.95rem;">
+                Selamat datang di portal akun Anda. Di sini Anda dapat memantau riwayat pesan konsultasi yang pernah Anda ajukan atau memulai obrolan baru dengan tim kami.
+              </p>
+            </div>
+            <div class="dashboard-header-actions">
+              <a href="#kontak" data-navigate="page-contact" class="btn btn-primary btn-sm">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Kirim Pesan Baru
+              </a>
+            </div>
+          </div>
+
+          <!-- User Highlights -->
+          <div class="dashboard-metrics-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+            <div class="metric-widget-card">
+              <div class="metric-icon-wrap" style="background: #EFF6FF; color: #2563EB;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              </div>
+              <div>
+                <div class="metric-label">Pesan Konsultasi Anda</div>
+                <div class="metric-value" id="userTotalSent">0</div>
+                <div class="metric-note">Terkirim ke tim pengembang</div>
+              </div>
+            </div>
+
+            <div class="metric-widget-card">
+              <div class="metric-icon-wrap" style="background: #FEF3C7; color: #D97706;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              </div>
+              <div>
+                <div class="metric-label">Status Keanggotaan</div>
+                <div class="metric-value" style="color: #D97706; font-size: 1.5rem;">Pengguna Terdaftar</div>
+                <div class="metric-note">Akses konsultasi &amp; portofolio</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- User History List -->
+          <div class="admin-table-container">
+            <div class="admin-table-header">
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-main);">Riwayat Pengiriman Pesan Anda</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem;">Daftar pesan dan catatan konsultasi yang dikirimkan melalui akun ini.</p>
+              </div>
+            </div>
+
+            <div id="userMessagesList" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================================================================
+       MODAL: DETAIL PROYEK
+       =================================================================== -->
+  <div class="modal-backdrop" id="projectModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="projectModalTitle">Detail Proyek</h3>
+          <span style="font-size: 0.82rem; color: var(--primary); font-weight: 600;" id="projectModalCategory">Kategori</span>
+        </div>
+        <button class="modal-close-btn modal-close-trigger">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="projectModalDesc" style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.25rem;">
+          Deskripsi proyek akan dimuat di sini...
+        </p>
+
+        <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem;">Fitur Unggulan</h4>
+        <ul id="projectModalFeatures" style="padding-left: 1.25rem; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem; line-height: 1.6;">
+        </ul>
+
+        <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem;">Teknologi Terapan</h4>
+        <div id="projectModalTech" style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm modal-close-trigger">Tutup Pratinjau</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MODAL: GANTI FOTO ANDA SENDIRI (INTERACTIVE CLIENT-SIDE PREVIEW)
+       =================================================================== -->
+  <div class="modal-backdrop" id="photoModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Ganti Foto Profil Anda</h3>
+        <button class="modal-close-btn modal-close-trigger">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.5;">
+          Anda dapat memilih file foto Anda dari komputer untuk langsung ditampilkan pada kartu profil di peramban ini. File akan disimpan secara lokal di browser Anda.
+        </p>
+        <input type="hidden" id="targetMember" value="team-1">
+        
+        <div class="form-group">
+          <label class="form-label" for="photoUploadInput">Pilih Berkas Foto (JPG, PNG, atau WebP):</label>
+          <input type="file" id="photoUploadInput" class="form-control" accept="image/*">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" id="resetPhotoBtn">Reset ke Standar</button>
+        <button class="btn btn-primary btn-sm modal-close-trigger">Selesai</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MODAL: DETAIL PESAN PENGUNJUNG (KHUSUS ADMIN)
+       =================================================================== -->
+  <div class="modal-backdrop" id="adminMessageDetailModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Rincian Pesan Pengunjung</h3>
+          <span style="font-size: 0.82rem; color: var(--primary); font-weight: 600;" id="modalMsgCategory">Kategori</span>
+        </div>
+        <button class="modal-close-btn modal-close-trigger">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background: var(--bg-subtle); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.25rem; font-size: 0.9rem;">
+          <div style="margin-bottom: 0.35rem;"><strong>Nama Pengirim:</strong> <span id="modalMsgSender">-</span></div>
+          <div style="margin-bottom: 0.35rem;"><strong>Waktu Kirim:</strong> <span id="modalMsgTime">-</span></div>
+          <div><strong>Subjek:</strong> <span id="modalMsgSubject" style="font-weight: 600; color: var(--text-main);">-</span></div>
+        </div>
+        <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem;">Isi Pesan:</h4>
+        <div id="modalMsgBody" style="background: #FFFFFF; border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-sm); color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; min-height: 100px; white-space: pre-wrap;">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm modal-close-trigger">Tutup Rincian</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       TOAST CONTAINER
+       =================================================================== -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ===================================================================
+       FOOTER
+       =================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="brand-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <span>KARYA<span style="color: var(--primary);">STUDIO</span></span>
+          </div>
+          <p>
+            Platform web percontohan berbasis HTML dan JavaScript murni. Dirancang dengan pendekatan semi-formal berorientasi performa tinggi dan estetika light theme yang bersih.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-nav-title">Halaman Cepat</h4>
+          <ul class="footer-links">
+            <li><a data-navigate="page-home">Halaman Utama (Beranda)</a></li>
+            <li><a data-navigate="page-profile">Profil & Tim Kami</a></li>
+            <li><a data-navigate="page-contact">Hubungi Kami (Formulir)</a></li>
+            <li><a data-navigate="page-login">Portal Masuk (Login)</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-nav-title">Informasi Deployment</h4>
+          <ul class="footer-links">
+            <li style="color: var(--text-soft); font-size: 0.9rem;">✓ Peramban Lokal (Offline Ready)</li>
+            <li style="color: var(--text-soft); font-size: 0.9rem;">✓ Kompatibel Penuh dengan Vercel</li>
+            <li style="color: var(--text-soft); font-size: 0.9rem;">✓ Bebas Build Tools & Bundler</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 Studio Karya Digital. Seluruh hak cipta dilindungi undang-undang.
+        </div>
+        <div style="display: flex; gap: 1.5rem;">
+          <span>HTML5 &amp; Vanilla JavaScript</span>
+          <span>Light Theme UI</span>
+          <span>Privacy Focused</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/app.js"></script>
+</body>
+</html>

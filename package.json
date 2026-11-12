@@ -1,0 +1,18 @@
+{
+  "name": "studio-karya-digital",
+  "version": "1.0.0",
+  "description": "Aplikasi Web Profil & Portofolio Modern berbasis HTML dan JavaScript Native, siap diupload ke Vercel.",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "html5",
+    "javascript",
+    "portfolio",
+    "light-theme",
+    "vercel"
+  ],
+  "author": "Studio Karya Digital",
+  "license": "MIT"
+}

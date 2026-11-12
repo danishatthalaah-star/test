@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="paperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+    <filter id="cShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#0F172A" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- Background aura -->
+  <circle cx="450" cy="140" r="110" fill="#EFF6FF" opacity="0.8" />
+  <circle cx="150" cy="310" r="90" fill="#F0FDF4" opacity="0.8" />
+  <ellipse cx="300" cy="390" rx="220" ry="22" fill="#E2E8F0" opacity="0.6" />
+
+  <!-- Dotted connection curve -->
+  <path d="M 120 280 Q 250 100 440 180" fill="none" stroke="#93C5FD" stroke-width="2.5" stroke-dasharray="6,6" />
+
+  <!-- Center Card: Message bubble board -->
+  <g filter="url(#cShadow)">
+    <rect x="130" y="80" width="340" height="260" rx="20" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" />
+    
+    <!-- Header of card -->
+    <rect x="130" y="80" width="340" height="50" rx="20" fill="#F8FAFC" />
+    <circle cx="160" cy="105" r="14" fill="#DBEAFE" />
+    <!-- Chat icon -->
+    <path d="M 155 101 C 153 101 151 103 151 105 C 151 107 153 109 155 109 L 157 109 L 157 111 L 160 109 L 165 109 C 167 109 169 107 169 105 C 169 103 167 101 165 101 Z" fill="#2563EB" />
+    <rect x="185" y="98" width="110" height="8" rx="4" fill="#1E293B" />
+    <rect x="185" y="111" width="70" height="6" rx="3" fill="#94A3B8" />
+
+    <!-- Chat Bubbles inside -->
+    <!-- Bubble 1: Incoming message -->
+    <path d="M 160 150 L 320 150 A 12 12 0 0 1 332 162 L 332 188 A 12 12 0 0 1 320 200 L 172 200 A 12 12 0 0 1 160 188 Z" fill="#F1F5F9" />
+    <rect x="175" y="165" width="130" height="6" rx="3" fill="#475569" />
+    <rect x="175" y="177" width="90" height="6" rx="3" fill="#64748B" />
+
+    <!-- Bubble 2: Response message -->
+    <path d="M 270 215 L 430 215 A 12 12 0 0 1 442 227 L 442 253 A 12 12 0 0 1 430 265 L 282 265 A 12 12 0 0 1 270 253 Z" fill="url(#cGrad)" />
+    <rect x="285" y="230" width="130" height="6" rx="3" fill="#FFFFFF" />
+    <rect x="285" y="242" width="80" height="6" rx="3" fill="#DBEAFE" />
+
+    <!-- Bottom input simulation -->
+    <rect x="155" y="285" width="230" height="36" rx="18" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+    <rect x="175" y="299" width="110" height="8" rx="4" fill="#CBD5E1" />
+    <circle cx="410" cy="303" r="18" fill="url(#cGrad)" />
+    <path d="M 405 303 L 413 298 L 413 308 Z" fill="#FFFFFF" />
+  </g>
+
+  <!-- Big Flying Paper Airplane (Creative connection) -->
+  <g filter="url(#cShadow)" transform="translate(360, 40) rotate(15)">
+    <polygon points="0,40 70,0 20,50" fill="#2563EB" />
+    <polygon points="70,0 20,50 35,65" fill="#3B82F6" />
+    <polygon points="20,50 35,65 24,75" fill="#1D4ED8" />
+  </g>
+
+  <!-- Floating Status Indicator (Left) -->
+  <g filter="url(#cShadow)">
+    <rect x="60" y="180" width="125" height="50" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+    <circle cx="82" cy="205" r="6" fill="#10B981" />
+    <circle cx="82" cy="205" r="10" fill="#A7F3D0" opacity="0.5" />
+    <text x="96" y="209" font-family="system-ui, sans-serif" font-weight="600" font-size="12" fill="#0F172A">Responsif</text>
+  </g>
+
+  <!-- Floating Privacy Badge (Right Bottom) -->
+  <g filter="url(#cShadow)">
+    <rect x="420" y="290" width="130" height="54" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+    <circle cx="445" cy="317" r="14" fill="#F3E8FF" />
+    <!-- Shield/Check -->
+    <path d="M 445 308 L 452 312 L 452 318 C 452 322 445 326 445 326 C 445 326 438 322 438 318 L 438 312 Z" fill="#8B5CF6" />
+    <rect x="468" y="310" width="65" height="6" rx="3" fill="#1E293B" />
+    <rect x="468" y="321" width="45" height="5" rx="2.5" fill="#94A3B8" />
+  </g>
+
+  <!-- Decorative stars & circles -->
+  <circle cx="100" cy="110" r="5" fill="#F59E0B" />
+  <circle cx="500" cy="220" r="4" fill="#3B82F6" />
+  <circle cx="230" cy="50" r="6" fill="#A855F7" opacity="0.6" />
+</svg>
